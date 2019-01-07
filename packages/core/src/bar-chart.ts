@@ -2,6 +2,7 @@
 import { select, mouse } from "d3-selection";
 import { scaleBand } from "d3-scale";
 import { min } from "d3-array";
+import { timeFormat } from "d3-time-format";
 
 import { BaseAxisChart } from "./base-axis-chart";
 import { StackedBarChart } from "./stacked-bar-chart";
@@ -61,12 +62,13 @@ export class BarChart extends BaseAxisChart {
 		const { bar: margins } = Configuration.charts.margin;
 		const chartSize = this.getChartSize();
 		const width = chartSize.width - margins.left - margins.right;
+		const { scales } = this.options;
 
 		if (xScale) {
 			this.x = xScale;
 		} else {
 			this.x = scaleBand().rangeRound([0, width]).padding(Configuration.bars.spacing.datasets);
-			this.x.domain(this.displayData.labels);
+			this.x.domain(this.dataLabels);
 		}
 
 		this.x1 = scaleBand().rangeRound([0, width]).padding(Configuration.bars.spacing.bars);
@@ -90,7 +92,7 @@ export class BarChart extends BaseAxisChart {
 			.attr("width", width);
 
 		gBars.selectAll("g")
-			.data(this.displayData.labels)
+			.data(this.dataLabels)
 			.enter()
 				.append("g")
 				.attr("transform", d => `translate(${this.x(d)}, 0)`)
@@ -100,9 +102,9 @@ export class BarChart extends BaseAxisChart {
 						.append("rect")
 						.classed("bar", true)
 						.attr("x", d => this.x1(d.datasetLabel))
-						.attr("y", d => this.y(Math.max(0, d.value)))
+						.attr("y", d => this.y(Math.max(0, d.value.y || d.value)))
 						.attr("width", this.x1.bandwidth())
-						.attr("height", d => Math.abs(this.y(d.value) - this.y(0)))
+						.attr("height", d => Math.abs(this.y(d.value.y || d.value) - this.y(0)))
 						.attr("fill", d => this.getFillScale()[d.datasetLabel](d.label))
 						.attr("stroke", d => this.options.accessibility ? this.colorScale[d.datasetLabel](d.label) : null)
 						.attr("stroke-width", Configuration.bars.default.strokeWidth)

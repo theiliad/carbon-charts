@@ -3,6 +3,7 @@ import { select } from "d3-selection";
 import { scaleBand, scaleLinear } from "d3-scale";
 import { axisBottom, axisLeft, axisRight } from "d3-axis";
 import { min, max } from "d3-array";
+import { timeFormat } from "d3-time-format";
 
 import { BaseChart } from "./base-chart";
 
@@ -14,6 +15,7 @@ export class BaseAxisChart extends BaseChart {
 	y: any;
 	y2: any;
 	thresholdDimensions: any;
+	dataLabels: any;
 
 	constructor(holder: Element, configs: any) {
 		super(holder, configs);
@@ -50,6 +52,7 @@ export class BaseAxisChart extends BaseChart {
 
 			// Scale out the domains
 			// Set the x & y axis as well as their labels
+			this.setXAxisLabels();
 			this.setXScale();
 			this.setXAxis();
 			this.setYScale();
@@ -76,6 +79,7 @@ export class BaseAxisChart extends BaseChart {
 		this.displayData = this.updateDisplayData();
 
 		this.updateXandYGrid();
+		this.setXAxisLabels();
 		this.setXScale();
 		this.setXAxis();
 		this.setYScale();
@@ -182,6 +186,14 @@ export class BaseAxisChart extends BaseChart {
 	/**************************************
 	 *  Axis & Grids                      *
 	 *************************************/
+	getScaleType() {
+		const firstDataPoint = this.displayData.datasets[0].data[0];
+		if (firstDataPoint && firstDataPoint.x && firstDataPoint.y) {
+			return Configuration.scales.continous;
+		}
+
+		return Configuration.scales.discrete;
+	}
 
 	setXScale(xScale?: any) {
 		if (xScale) {
@@ -194,7 +206,29 @@ export class BaseAxisChart extends BaseChart {
 			const width = chartSize.width - margins.left - margins.right;
 
 			this.x = scaleBand().rangeRound([0, width]).padding(Configuration.scales.x.padding);
-			this.x.domain(this.displayData.labels);
+			if (scales.x.type === "time") {
+				this.x.domain(this.displayData.datasets[0].data.map(d => d.x));
+			} else {
+				this.x.domain(this.displayData.labels);
+			}
+		}
+	}
+
+	setXAxisLabels() {
+		const { scales } = this.options;
+
+		if (scales.x.type === "time") {
+			// TODO TIME - SUPPORT ALL DATASETS
+			let allTimestamps = this.displayData.datasets[0].data.map(d => {
+				const dateObject = new Date(d.x);
+
+				return dateObject.getTime();
+			});
+			allTimestamps = allTimestamps.sort((a, b) => a - b);
+
+			this.dataLabels = allTimestamps;
+		} else {
+			this.dataLabels = this.displayData.labels;
 		}
 	}
 
@@ -202,12 +236,17 @@ export class BaseAxisChart extends BaseChart {
 		const { bar: margins } = Configuration.charts.margin;
 		const chartSize = this.getChartSize();
 		const height = chartSize.height - margins.top - margins.bottom;
+		const { scales } = this.options;
 
 		const t = noAnimation ? this.getInstantTransition() : this.getDefaultTransition();
 
 		const xAxis = axisBottom(this.x)
 			.tickSize(0)
 			.tickSizeOuter(0);
+		if (scales.x.type === "time") {
+			xAxis.tickFormat(timeFormat("%b %d, %Y"));
+		}
+
 		let xAxisRef = this.svg.select("g.x.axis");
 
 		// If the <g class="x axis"> exists in the chart SVG, just update it
@@ -266,13 +305,25 @@ export class BaseAxisChart extends BaseChart {
 		let yMax;
 
 		if (datasets.length === 1) {
-			yMax = max(datasets[0].data);
+			if (scales.x.type === "time") {
+				yMax = max(datasets[0].data, (d: any) => d.y);
+			} else {
+				yMax = max(datasets[0].data);
+			}
 		} else {
-			yMax = max(datasets, (d: any) => (max(d.data)));
-		}
-
-		if (scales.y.yMaxAdjuster) {
-			yMax = scales.y.yMaxAdjuster(yMax);
+			if (scales.x.type === "time") {
+				yMax = max(
+					datasets,
+					(d: any) => (
+						max(
+							d.data,
+							(dd: any) => dd.y
+						)
+					)
+				);
+			} else {
+				yMax = max(datasets, (d: any) => (max(d.data)));
+			}
 		}
 
 		return yMax;
@@ -284,9 +335,25 @@ export class BaseAxisChart extends BaseChart {
 		let yMin;
 
 		if (datasets.length === 1) {
-			yMin = min(datasets[0].data);
+			if (scales.x.type === "time") {
+				yMin = min(datasets[0].data, (d: any) => d.y);
+			} else {
+				yMin = min(datasets[0].data);
+			}
 		} else {
-			yMin = min(datasets, (d: any) => (min(d.data)));
+			if (scales.x.type === "time") {
+				yMin = min(
+					datasets,
+					(d: any) => (
+						min(
+							d.data,
+							(dd: any) => dd.y
+						)
+					)
+				);
+			} else {
+				yMin = min(datasets, (d: any) => (min(d.data)));
+			}
 		}
 
 		if (scales.y.yMinAdjuster) {
@@ -310,6 +377,8 @@ export class BaseAxisChart extends BaseChart {
 			this.y = scaleLinear().range([height, 0]);
 			this.y.domain([Math.min(yMin, 0), yMax]);
 		}
+
+		console.log("y", this.y.domain());
 
 		if (scales.y2 && scales.y2.ticks.max) {
 			this.y2 = scaleLinear().rangeRound([height, 0]);

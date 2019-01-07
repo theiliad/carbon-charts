@@ -139,7 +139,9 @@ export const scales = {
 	},
 	y2: {
 		numberOfTicks: 5
-	}
+	},
+	continous: "continous",
+	discrete: "discrete"
 };
 
 export const grid = {
