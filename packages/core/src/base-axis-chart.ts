@@ -2,13 +2,14 @@
 import { select } from "d3-selection";
 import { scaleBand, scaleLinear } from "d3-scale";
 import { axisBottom, axisLeft, axisRight } from "d3-axis";
-import { min, max } from "d3-array";
+import { min, max, extent } from "d3-array";
 import { timeFormat } from "d3-time-format";
 
 import { BaseChart } from "./base-chart";
 
 import * as Configuration from "./configuration";
 import { Tools } from "./tools";
+import { getD3Curve } from "./services/curves";
 
 export class BaseAxisChart extends BaseChart {
 	x: any;
@@ -128,13 +129,22 @@ export class BaseAxisChart extends BaseChart {
 	}
 
 	addLabelsToDataPoints(d, index) {
+		console.log("INDEX", index, d)
 		const { datasets } = this.displayData;
 
-		return datasets.map(dataset => ({
-			label: d,
-			datasetLabel: dataset.label,
-			value: dataset.data[index]
-		}));
+		if (this.getScaleType() === Configuration.scales.continous) {
+			return d.data.map(dataPoint => ({
+				x: dataPoint.x,
+				datasetLabel: d.label,
+				value: dataPoint.y
+			}));
+		} else {
+			return datasets.map(dataset => ({
+				label: d,
+				datasetLabel: dataset.label,
+				value: dataset.data[index]
+			}));
+		}
 	}
 
 	draw() {
@@ -217,7 +227,18 @@ export class BaseAxisChart extends BaseChart {
 	setXAxisLabels() {
 		const { scales } = this.options;
 
-		if (scales.x.type === "time") {
+		if (this.getScaleType() === Configuration.scales.continous) {
+			const allDataXPoints = [];
+			this.displayData.datasets.forEach(dataset => {
+				dataset.data.forEach(dataPoint => {
+					allDataXPoints.push(dataPoint.x);
+				});
+			});
+
+			// Get the extent of the data points
+			const dataExtent = extent(allDataXPoints);
+			this.dataLabels = [dataExtent[0] - 30, dataExtent[1] + 30];
+		} else if (scales.x.type === "time") {
 			// TODO TIME - SUPPORT ALL DATASETS
 			let allTimestamps = this.displayData.datasets[0].data.map(d => {
 				const dateObject = new Date(d.x);
@@ -243,9 +264,9 @@ export class BaseAxisChart extends BaseChart {
 		const xAxis = axisBottom(this.x)
 			.tickSize(0)
 			.tickSizeOuter(0);
-		if (scales.x.type === "time") {
-			xAxis.tickFormat(timeFormat("%b %d, %Y"));
-		}
+		// if (scales.x.type === "time") {
+		// 	xAxis.tickFormat(timeFormat("%b %d, %Y"));
+		// }
 
 		let xAxisRef = this.svg.select("g.x.axis");
 

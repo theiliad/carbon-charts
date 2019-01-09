@@ -1,30 +1,12 @@
 // D3 Imports
 import { select, mouse } from "d3-selection";
-import { scaleBand } from "d3-scale";
+import { scaleBand, scaleLinear } from "d3-scale";
 import { min } from "d3-array";
 import { timeFormat } from "d3-time-format";
 
 import { BaseAxisChart } from "./base-axis-chart";
 import { StackedBarChart } from "./stacked-bar-chart";
 import * as Configuration from "./configuration";
-
-const getYMin = configs => {
-	const { datasets } = configs.data;
-	const { scales } = configs.options;
-	let yMin;
-
-	if (datasets.length === 1) {
-		yMin = min(datasets[0].data);
-	} else {
-		yMin = min(datasets, (d: any) => (min(d.data)));
-	}
-
-	if (scales.y.yMinAdjuster) {
-		yMin = scales.y.yMinAdjuster(yMin);
-	}
-
-	return yMin;
-};
 
 export class BarChart extends BaseAxisChart {
 	x: any;
@@ -33,13 +15,12 @@ export class BarChart extends BaseAxisChart {
 	colorScale: any;
 
 	constructor(holder: Element, configs: any) {
+		const firstDataPoint = configs.data.datasets[0].data[0];
+
 		// If this is a stacked bar chart, change the object prototype
-		if (configs.options.scales.y.stacked) {
-			if (getYMin(configs) >= 0) {
+		if (configs.options.scales.y.stacked ||
+			(firstDataPoint && firstDataPoint.x && firstDataPoint.y)) {
 				return new StackedBarChart(holder, configs);
-			} else {
-				console.error("Negative values are not supported in StackedBarChart, using GroupedBarChart instead to render!");
-			}
 		}
 
 		super(holder, configs);
@@ -67,12 +48,16 @@ export class BarChart extends BaseAxisChart {
 		if (xScale) {
 			this.x = xScale;
 		} else {
-			this.x = scaleBand().rangeRound([0, width]).padding(Configuration.bars.spacing.datasets);
-			this.x.domain(this.dataLabels);
-		}
+			if (this.getScaleType() === Configuration.scales.continous) {
+				this.x = scaleLinear().domain(this.dataLabels).range([0, width]);
+			} else {
+				this.x = scaleBand().rangeRound([0, width]).padding(Configuration.bars.spacing.datasets);
+				this.x.domain(this.dataLabels);
 
-		this.x1 = scaleBand().rangeRound([0, width]).padding(Configuration.bars.spacing.bars);
-		this.x1.domain(this.displayData.datasets.map(dataset => dataset.label)).rangeRound([0, this.x.bandwidth()]);
+				this.x1 = scaleBand().rangeRound([0, width]).padding(Configuration.bars.spacing.bars);
+				this.x1.domain(this.displayData.datasets.map(dataset => dataset.label)).rangeRound([0, this.x.bandwidth()]);
+			}
+		}
 	}
 
 	draw() {
@@ -87,28 +72,27 @@ export class BarChart extends BaseAxisChart {
 
 		const gBars = this.innerWrap
 			.attr("transform", `translate(${margins.left}, ${margins.top})`)
-			.append("g")
-			.classed("bars", true)
-			.attr("width", width);
-
-		gBars.selectAll("g")
-			.data(this.dataLabels)
+			.selectAll("g.bars")
+			.data(this.displayData.datasets)
 			.enter()
 				.append("g")
-				.attr("transform", d => `translate(${this.x(d)}, 0)`)
-				.selectAll("rect.bar")
-				.data((d, index) => this.addLabelsToDataPoints(d, index))
-					.enter()
-						.append("rect")
-						.classed("bar", true)
-						.attr("x", d => this.x1(d.datasetLabel))
-						.attr("y", d => this.y(Math.max(0, d.value.y || d.value)))
-						.attr("width", this.x1.bandwidth())
-						.attr("height", d => Math.abs(this.y(d.value.y || d.value) - this.y(0)))
-						.attr("fill", d => this.getFillScale()[d.datasetLabel](d.label))
-						.attr("stroke", d => this.options.accessibility ? this.colorScale[d.datasetLabel](d.label) : null)
-						.attr("stroke-width", Configuration.bars.default.strokeWidth)
-						.attr("stroke-opacity", d => this.options.accessibility ? 1 : 0);
+				.classed("bars", true)
+				.attr("width", width);
+		
+		gBars.selectAll("rect.bar")
+			.data((d, i) => this.addLabelsToDataPoints(d, i))
+			.enter()
+			.each(_ => console.log("EACH", _))
+			.append("rect")
+			.classed("bar", true)
+			.attr("x", d => this.x(d.x))
+			.attr("y", d => this.y(Math.max(0, d.value)))
+			.attr("width", 5)
+			.attr("height", d => Math.abs(this.y(d.value) - this.y(0)))
+			.attr("fill", d => this.getFillScale()[d.datasetLabel](d.label))
+			.attr("stroke", d => this.options.accessibility ? this.colorScale[d.datasetLabel](d.label) : null)
+			.attr("stroke-width", Configuration.bars.default.strokeWidth)
+			.attr("stroke-opacity", d => this.options.accessibility ? 1 : 0);
 
 		// Hide the overlay
 		this.updateOverlay().hide();

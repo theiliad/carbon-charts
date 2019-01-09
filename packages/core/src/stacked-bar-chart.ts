@@ -53,7 +53,7 @@ export class StackedBarChart extends BaseAxisChart {
 
 	getStackData() {
 		// Create the stack datalist
-		const stackDataArray = this.displayData.labels.map((label, i) => {
+		const stackDataArray = this.dataLabels.map((label, i) => {
 			const correspondingData = {};
 
 			this.displayData.datasets.forEach(dataset => {
@@ -64,6 +64,8 @@ export class StackedBarChart extends BaseAxisChart {
 
 			return correspondingData;
 		});
+
+		console.log("stackDataArray", stackDataArray)
 
 		return stackDataArray;
 	}
@@ -90,7 +92,7 @@ export class StackedBarChart extends BaseAxisChart {
 				.enter()
 					.append("rect")
 					.classed("bar", true)
-					.attr("x", d => this.x(d.data.label))
+					.attr("x", d => console.log("FWE", d))
 					.attr("y", d => this.y(d[1]))
 					.attr("height", d => this.y(d[0]) - this.y(d[1]))
 					.attr("width", d => this.x.bandwidth())

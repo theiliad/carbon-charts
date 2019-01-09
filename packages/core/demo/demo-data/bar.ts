@@ -8,27 +8,27 @@ export const groupedBarData = {
 			backgroundColors: [colors[0]],
 			data: [
 				{
-					x: new Date("Dec 10, 2018"),
+					x: -300,
 					y: 200
 				},
 				{
-					x: new Date("Dec 5, 2017"),
+					x: 200,
 					y: 20
 				},
 				{
-					x: new Date("Aug 21, 2017"),
+					x: 10,
 					y: 50
 				},
 				{
-					x: new Date("Jan 10, 2017"),
+					x: 0,
 					y: 300
 				},
 				{
-					x: new Date("July 15, 2018"),
+					x: 300,
 					y: 250
 				},
 				{
-					x: new Date("Sep 10, 2017"),
+					x: 20,
 					y: 100
 				}
 			]
@@ -38,27 +38,27 @@ export const groupedBarData = {
 			backgroundColors: [colors[1]],
 			data: [
 				{
-					x: new Date("Dec 10, 2018"),
+					x: 300,
 					y: 100
 				},
 				{
-					x: new Date("Dec 5, 2017"),
+					x: 10,
 					y: 230
 				},
 				{
-					x: new Date("Aug 21, 2017"),
+					x: 253,
 					y: 150
 				},
 				{
-					x: new Date("Jan 10, 2017"),
+					x: 32,
 					y: 30
 				},
 				{
-					x: new Date("July 15, 2018"),
+					x: 64,
 					y: 200
 				},
 				{
-					x: new Date("Sep 10, 2017"),
+					x: 43,
 					y: 20
 				}
 			]
