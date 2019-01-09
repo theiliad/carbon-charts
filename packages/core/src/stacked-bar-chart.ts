@@ -65,7 +65,7 @@ export class StackedBarChart extends BaseAxisChart {
 			return correspondingData;
 		});
 
-		console.log("stackDataArray", stackDataArray)
+		console.log("stackDataArray", stackDataArray);
 
 		return stackDataArray;
 	}

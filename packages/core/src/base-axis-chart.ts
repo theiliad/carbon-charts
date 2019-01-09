@@ -129,7 +129,7 @@ export class BaseAxisChart extends BaseChart {
 	}
 
 	addLabelsToDataPoints(d, index) {
-		console.log("INDEX", index, d)
+		console.log("INDEX", index, d);
 		const { datasets } = this.displayData;
 
 		if (this.getScaleType() === Configuration.scales.continous) {

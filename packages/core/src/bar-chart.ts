@@ -78,7 +78,7 @@ export class BarChart extends BaseAxisChart {
 				.append("g")
 				.classed("bars", true)
 				.attr("width", width);
-		
+
 		gBars.selectAll("rect.bar")
 			.data((d, i) => this.addLabelsToDataPoints(d, i))
 			.enter()
