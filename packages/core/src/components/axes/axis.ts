@@ -9,7 +9,19 @@ import { DOMUtils } from "../../services";
 import { scaleBand, scaleLinear, scaleTime, scaleLog, scaleOrdinal } from "d3-scale";
 import { axisBottom, axisLeft, axisRight, axisTop } from "d3-axis";
 import { min, max, extent } from "d3-array";
+import { timeFormat, timeFormatDefaultLocale } from "d3-time-format";
 
+const turkishLocale = {
+	"dateTime": "%a %e %b %X %Y",
+	"date": "%d/%m/%Y",
+	"time": "%H:%M:%S",
+	"periods": ["AM", "PM"],
+	"days": ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"],
+	"shortDays": ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"],
+	"months": ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+	"shortMonths": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"]
+} as any;
+console.log("turkishLocale", turkishLocale)
 export class Axis extends Component {
 	type = "axes";
 
@@ -191,7 +203,12 @@ export class Axis extends Component {
 
 		// Initialize axis object
 		const axis = axisFunction(scale)
-			.tickSizeOuter(0);
+			.tickSizeOuter(0)
+			.tickFormat(this.scaleType === ScaleTypes.TIME ? d => {
+				timeFormatDefaultLocale(turkishLocale)
+
+				return timeFormat("%B %d, %Y")(d);
+			}: null);
 
 		if (scale.ticks) {
 			const numberOfTicks = 7;
