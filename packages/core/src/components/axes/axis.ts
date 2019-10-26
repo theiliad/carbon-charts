@@ -21,7 +21,7 @@ const turkishLocale = {
 	"months": ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
 	"shortMonths": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"]
 } as any;
-console.log("turkishLocale", turkishLocale)
+
 export class Axis extends Component {
 	type = "axes";
 
@@ -205,10 +205,10 @@ export class Axis extends Component {
 		const axis = axisFunction(scale)
 			.tickSizeOuter(0)
 			.tickFormat(this.scaleType === ScaleTypes.TIME ? d => {
-				timeFormatDefaultLocale(turkishLocale)
+				timeFormatDefaultLocale(turkishLocale);
 
 				return timeFormat("%B %d, %Y")(d);
-			}: null);
+			} : null);
 
 		if (scale.ticks) {
 			const numberOfTicks = 7;
