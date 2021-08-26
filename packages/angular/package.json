@@ -40,7 +40,7 @@
 		"scss"
 	],
 	"dependencies": {
-		"@carbon/charts": "0.41.98-d3v5-latest.1",
+		"@carbon/charts": "^0.41.98-d3v5-latest.1",
 		"@carbon/telemetry": "0.0.0-alpha.6"
 	},
 	"peerDependencies": {
