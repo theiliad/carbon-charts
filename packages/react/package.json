@@ -1,6 +1,6 @@
 {
 	"name": "@carbon/charts-react",
-	"version": "0.41.98-d3v5-0.1",
+	"version": "d3v5-0.1",
 	"description": "Carbon charting components for React",
 	"main": "./bundle.js",
 	"module": "./index.js",
@@ -48,7 +48,7 @@
 	},
 	"homepage": "https://github.com/carbon-design-system/carbon-charts#readme",
 	"dependencies": {
-		"@carbon/charts": "^0.41.98-d3v5-0.1",
+		"@carbon/charts": "^d3v5-0.1",
 		"@carbon/icons-react": "^10.32.0",
 		"@carbon/telemetry": "0.0.0-alpha.6"
 	},
@@ -103,5 +103,5 @@
 			"url": "https://github.com/theiliad"
 		}
 	],
-	"gitHead": "5969033e34938e066540e945014bd804dcf2fbe5"
+	"gitHead": "fb466910ec326d36d5c7ef584c49804df95394ca"
 }
