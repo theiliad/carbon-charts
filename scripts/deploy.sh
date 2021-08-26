@@ -16,7 +16,7 @@ echo "Publish to Github"
 # # checkout master to get out of detached HEAD state
 # git checkout master
 
-lerna version --no-push
+lerna version prepatch --preid d3v5 --no-push
 
 # echo "Publish to NPM"
 
