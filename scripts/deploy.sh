@@ -27,4 +27,4 @@ npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN -q
 
 node scripts/add-telemetry-to-packages.js
 
-lerna publish from-git --yes --force-publish --contents dist --dist-tag latest-d3v5
+lerna publish --yes --force-publish --contents dist --dist-tag latest-d3v5
