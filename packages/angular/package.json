@@ -1,6 +1,6 @@
 {
 	"name": "@carbon/charts-angular",
-	"version": "0.41.98-d3v5-0.1",
+	"version": "0.41.99-d3v5-0.1",
 	"description": "Carbon charting components for Angular",
 	"main": "index.js",
 	"scripts": {
@@ -40,7 +40,7 @@
 		"scss"
 	],
 	"dependencies": {
-		"@carbon/charts": "0.41.98-d3v5-0.1",
+		"@carbon/charts": "0.41.99-d3v5-0.1",
 		"@carbon/telemetry": "0.0.0-alpha.6"
 	},
 	"peerDependencies": {
@@ -99,5 +99,5 @@
 			"url": "https://github.com/theiliad"
 		}
 	],
-	"gitHead": "fb466910ec326d36d5c7ef584c49804df95394ca"
+	"gitHead": "081384b58080b4703a83daa94e9ac45a8bbbb21d"
 }
