@@ -27,4 +27,4 @@ echo "Publish to NPM"
 
 node scripts/add-telemetry-to-packages.js
 
-lerna publish from-package --yes --force-publish --contents dist --dist-tag d3v5-latest
+lerna publish from-package --yes --force-publish --contents dist
