@@ -22,8 +22,8 @@ echo "Publish to NPM"
 
 	# yarn build
 
-# authenticate with the npm registry
-npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN -q
+# # authenticate with the npm registry
+# npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN -q
 
 node scripts/add-telemetry-to-packages.js
 
