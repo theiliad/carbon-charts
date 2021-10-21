@@ -4,11 +4,14 @@
 	width: 100%;
 	height: 100%;
 
+	// TODO - REMOVE BEFORE MERGE
+	background-color: theme.$background;
+
 	&.filled {
-		background-color: $ui-background;
+		background-color: theme.$background;
 
 		.#{$prefix}--#{$charts-prefix}--chart-wrapper {
-			background-color: $ui-background;
+			background-color: theme.$background;
 		}
 	}
 
