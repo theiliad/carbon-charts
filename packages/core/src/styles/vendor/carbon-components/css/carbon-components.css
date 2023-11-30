@@ -4417,7 +4417,7 @@ li.bx--accordion__item--disabled:last-of-type {
   margin-bottom: 0;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--accordion__arrow,
   .bx--accordion__item--active .bx--accordion__arrow {
     fill: ButtonText;
@@ -6858,14 +6858,14 @@ path:not([data-icon-path]):not([fill='none']),
           box-shadow: none;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--btn:focus {
     color: Highlight;
     outline: 1px solid Highlight;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--btn--ghost.bx--btn--icon-only
 .bx--btn__icon
 path:not([data-icon-path]):not([fill='none']),
@@ -6972,7 +6972,7 @@ input[data-invalid]:not(:focus),
 > .bx--text-area--invalid:not(:focus),
 .bx--select-input__wrapper[data-invalid]
 .bx--select-input:not(:focus),
-.bx--list-box[data-invalid]:not(:focus),
+.bx--list-box[data-invalid]:not(.bx--multi-select--invalid--focused),
 .bx--combo-box[data-invalid] .bx--text-input:not(:focus) {
   outline: 2px solid #da1e28;
   outline-offset: -2px;
@@ -6987,7 +6987,7 @@ input[data-invalid]:not(:focus),
 > .bx--text-area--invalid:not(:focus),
   .bx--select-input__wrapper[data-invalid]
 .bx--select-input:not(:focus),
-  .bx--list-box[data-invalid]:not(:focus),
+  .bx--list-box[data-invalid]:not(.bx--multi-select--invalid--focused),
   .bx--combo-box[data-invalid] .bx--text-input:not(:focus) {
     outline-style: dotted;
   }
@@ -7600,6 +7600,18 @@ fieldset[disabled] .bx--form__helper-text {
   transition: max-height 150ms cubic-bezier(0.2, 0, 0.38, 0.9);
 }
 
+.bx--snippet--multi .bx--snippet-container:focus {
+  outline: 2px solid #0f62fe;
+  outline-offset: -2px;
+  outline-offset: 0;
+}
+
+@media screen and (prefers-contrast) {
+  .bx--snippet--multi .bx--snippet-container:focus {
+    outline-style: dotted;
+  }
+}
+
 .bx--snippet--multi.bx--snippet--expand
 .bx--snippet-container {
   padding-bottom: 1rem;
@@ -8018,20 +8030,20 @@ pre::after {
 }
 
 /* stylelint-disable */
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--snippet__icon {
     fill: ButtonText;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--snippet--inline:focus {
     color: Highlight;
     outline: 1px solid Highlight;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--snippet--single,
   .bx--snippet--multi {
     outline: 1px solid transparent;
@@ -8905,7 +8917,7 @@ pre::after {
   background-color: inherit;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--list-box__field,
   .bx--list-box__menu,
   .bx--multi-select .bx--tag--filter {
@@ -8913,7 +8925,7 @@ pre::after {
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--list-box__field:focus,
   .bx--multi-select .bx--tag__close-icon:focus,
   .bx--list-box__menu-item--highlighted
@@ -8923,7 +8935,7 @@ pre::after {
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--list-box__menu-icon > svg,
   .bx--list-box__selection > svg,
   .bx--list-box__selection--multi > svg {
@@ -9177,7 +9189,7 @@ pre::after {
   fill: #ffffff;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--content-switcher-btn:focus {
     color: Highlight;
     outline: 1px solid Highlight;
@@ -9853,7 +9865,10 @@ pre::after {
 }
 
 .bx--action-list .bx--btn:disabled {
-  color: #8d8d8d;
+  border-color: transparent;
+  background-color: transparent;
+  color: #ffffff;
+  opacity: 0.5;
 }
 
 .bx--action-list .bx--btn .bx--btn__icon {
@@ -11079,7 +11094,7 @@ td {
   margin: -0.1875rem 0;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--data-table-content {
     outline: 1px solid transparent;
   }
@@ -11463,14 +11478,14 @@ td {
   background: #e0e0e0;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--table-expand__button:focus .bx--table-expand__svg {
     color: Highlight;
     outline: 1px solid Highlight;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--table-expand__svg {
     fill: ButtonText;
   }
@@ -11699,7 +11714,7 @@ th
   margin-top: 0.8125rem;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--table-sort__icon,
   .bx--table-sort__icon-unsorted {
     fill: ButtonText;
@@ -12641,14 +12656,14 @@ th
   cursor: pointer;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .flatpickr-prev-month,
   .flatpickr-next-month {
     fill: ButtonText;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .flatpickr-day.selected {
     color: Highlight;
     outline: 1px solid Highlight;
@@ -12656,14 +12671,14 @@ th
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .flatpickr-day.today,
   .flatpickr-day.inRange {
     color: Highlight;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .flatpickr-calendar {
     outline: 1px solid transparent;
   }
@@ -12987,7 +13002,7 @@ th
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--date-picker__icon {
     fill: ButtonText;
   }
@@ -13515,19 +13530,19 @@ button.bx--dropdown-text:focus {
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--dropdown .bx--list-box__field {
     outline: 1px solid transparent;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--list-box__menu-item__option {
     outline: none;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--list-box__menu-item__selected-icon {
     fill: ButtonText;
   }
@@ -14023,7 +14038,6 @@ button.bx--dropdown-text:focus {
 }
 
 .bx--file__state-container .bx--file-complete {
-  cursor: pointer;
   fill: #0f62fe;
 }
 
@@ -14087,6 +14101,19 @@ button.bx--dropdown-text:focus {
 }
 
 .bx--file__drop-container {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.28572;
+  letter-spacing: 0.16px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -14102,6 +14129,10 @@ button.bx--dropdown-text:focus {
   border: 1px dashed #8d8d8d;
 }
 
+.bx--file__drop-container::-moz-focus-inner {
+  border: 0;
+}
+
 .bx--file__drop-container--drag-over {
   background: none;
   outline: 2px solid #0f62fe;
@@ -14109,13 +14140,13 @@ button.bx--dropdown-text:focus {
 }
 
 /* stylelint-disable */
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--file__selected-file {
     outline: 1px solid transparent;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--file__state-container .bx--file-close svg path {
     fill: ButtonText;
   }
@@ -14580,8 +14611,14 @@ button.bx--dropdown-text:focus {
 .bx--modal .bx--dropdown-list,
 .bx--modal .bx--number input[type='number'],
 .bx--modal .bx--date-picker__input,
-.bx--modal .bx--multi-select {
+.bx--modal .bx--multi-select,
+.bx--modal .bx--number__control-btn::before,
+.bx--modal .bx--number__control-btn::after {
   background-color: #ffffff;
+}
+
+.bx--modal .bx--number__rule-divider {
+  background-color: #e0e0e0;
 }
 
 .bx--modal.is-visible .bx--modal-container {
@@ -14656,6 +14693,10 @@ button.bx--dropdown-text:focus {
   }
 }
 
+.bx--modal-container .bx--modal-container-body {
+  display: contents;
+}
+
 .bx--modal-content {
   font-size: 0.875rem;
   font-weight: 400;
@@ -14684,7 +14725,7 @@ button.bx--dropdown-text:focus {
   }
 }
 
-.bx--modal-content p,
+.bx--modal-content > p,
 .bx--modal-content__regular-content {
   padding-right: 20%;
   font-size: 0.875rem;
@@ -14728,7 +14769,7 @@ button.bx--dropdown-text:focus {
   padding-right: 1rem;
 }
 
-.bx--modal-container--xs .bx--modal-content p {
+.bx--modal-container--xs .bx--modal-content > p {
   padding-right: 0;
 }
 
@@ -14755,7 +14796,7 @@ button.bx--dropdown-text:focus {
   padding-right: 1rem;
 }
 
-.bx--modal-container--sm .bx--modal-content p {
+.bx--modal-container--sm .bx--modal-content > p {
   padding-right: 0;
 }
 
@@ -14770,7 +14811,7 @@ button.bx--dropdown-text:focus {
     width: 42%;
     max-height: 72%;
   }
-  .bx--modal-container--sm .bx--modal-content p,
+  .bx--modal-container--sm .bx--modal-content > p,
   .bx--modal-container--sm .bx--modal-content__regular-content {
     padding-right: 20%;
   }
@@ -14921,13 +14962,13 @@ button.bx--dropdown-text:focus {
 }
 
 /* stylelint-disable */
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--modal-close__icon {
     fill: ButtonText;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--modal-close:focus {
     color: Highlight;
     outline: 1px solid Highlight;
@@ -14935,9 +14976,25 @@ button.bx--dropdown-text:focus {
 }
 
 /* stylelint-enable */
+.bx--multi-select .bx--list-box__field--wrapper {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  height: calc(100% + 1px);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.bx--multi-select .bx--list-box__field:focus {
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+}
+
 .bx--multi-select .bx--tag {
   min-width: auto;
-  margin: 0 0.5rem 0 0;
+  margin: 0 0.5rem 0 1rem;
 }
 
 .bx--multi-select--filterable .bx--tag {
@@ -15001,19 +15058,25 @@ button.bx--dropdown-text:focus {
   outline: none;
 }
 
-.bx--multi-select--filterable--input-focused {
+.bx--multi-select--filterable--input-focused,
+.bx--multi-select
+.bx--list-box__field--wrapper--input-focused {
   outline: 2px solid #0f62fe;
   outline-offset: -2px;
 }
 
 @media screen and (prefers-contrast) {
-  .bx--multi-select--filterable--input-focused {
+  .bx--multi-select--filterable--input-focused,
+  .bx--multi-select
+.bx--list-box__field--wrapper--input-focused {
     outline-style: dotted;
   }
 }
 
 .bx--multi-select--filterable.bx--multi-select--selected
-.bx--text-input {
+.bx--text-input,
+.bx--multi-select.bx--multi-select--selected
+.bx--list-box__field {
   padding-left: 0;
 }
 
@@ -15032,6 +15095,11 @@ button.bx--dropdown-text:focus {
 .bx--text-input {
   border-bottom: 0;
   background-color: transparent;
+}
+
+.bx--multi-select:not(.bx--list-box--expanded)
+.bx--list-box__menu {
+  visibility: hidden;
 }
 
 .bx--inline-notification {
@@ -15410,13 +15478,13 @@ path[opacity='0'] {
 }
 
 /* stylelint-disable */
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--inline-notification {
     outline: 1px solid transparent;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--inline-notification__close-button:focus,
   .bx--btn.bx--btn--ghost.bx--inline-notification__action-button:focus {
     color: Highlight;
@@ -15424,8 +15492,9 @@ path[opacity='0'] {
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
-  .bx--inline-notification__icon {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
+  .bx--inline-notification
+.bx--inline-notification__close-icon {
     fill: ButtonText;
   }
 }
@@ -15710,21 +15779,21 @@ path[opacity='0'] {
 }
 
 /* stylelint-disable */
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--toast-notification {
     outline: 1px solid transparent;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--toast-notification__close-button:focus {
     color: Highlight;
     outline: 1px solid Highlight;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
-  .bx--toast-notification__icon {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
+  .bx--toast-notification .bx--toast-notification__close-icon {
     fill: ButtonText;
   }
 }
@@ -15763,6 +15832,8 @@ path[opacity='0'] {
   border: 0;
   border-bottom: 0.0625rem solid #8d8d8d;
   -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+          appearance: textfield;
   background-color: #f4f4f4;
   border-radius: 0;
   color: #161616;
@@ -16260,7 +16331,7 @@ input[type='number']:disabled
 }
 
 /* stylelint-disable */
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--number__control-btn:hover,
   .bx--number__control-btn:focus {
     color: Highlight;
@@ -16268,13 +16339,13 @@ input[type='number']:disabled
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--number__control-btn {
     outline: 1px solid transparent;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--number__control-btn svg {
     fill: ButtonText;
   }
@@ -16664,7 +16735,7 @@ svg {
 }
 
 /* stylelint-disable */
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--overflow-menu:focus,
   .bx--overflow-menu-options__btn:focus {
     color: Highlight;
@@ -16672,7 +16743,7 @@ svg {
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--overflow-menu svg {
     fill: ButtonText;
   }
@@ -17187,7 +17258,7 @@ optgroup.bx--select-optgroup:disabled,
   display: none;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--select__arrow {
     fill: ButtonText;
   }
@@ -17904,7 +17975,7 @@ svg:hover,
   background: transparent;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--text-input--password__visibility,
   .bx--btn.bx--btn--icon-only.bx--text-input--password__visibility__toggle.bx--tooltip__trigger svg,
   .bx--btn.bx--btn--icon-only.bx--text-input--password__visibility__toggle.bx--tooltip__trigger:hover
@@ -18172,7 +18243,7 @@ span.bx--pagination__text {
   margin-bottom: 0;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--pagination__button,
   .bx--btn--ghost.bx--pagination__button {
     outline: 1px solid transparent;
@@ -18184,14 +18255,27 @@ span.bx--pagination__text {
   font-weight: 400;
   line-height: 1.28572;
   letter-spacing: 0.16px;
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-width: 3rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-bottom: 0.5rem;
   color: #161616;
+}
+
+.bx--progress-bar__label-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .bx--progress-bar__track {
   position: relative;
   width: 100%;
+  min-width: 3rem;
   height: 0.5rem;
   background-color: #f4f4f4;
 }
@@ -18208,7 +18292,8 @@ span.bx--pagination__text {
   display: block;
   width: 100%;
   height: 100%;
-  background-color: #0f62fe;
+  background-color: currentColor;
+  color: #0f62fe;
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   -webkit-transform-origin: 0 center /*rtl:100% center*/;
@@ -18245,8 +18330,59 @@ span.bx--pagination__text {
   font-size: 0.75rem;
   line-height: 1.33333;
   letter-spacing: 0.32px;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
   color: #525252;
+}
+
+.bx--progress-bar__status-icon {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  margin-left: 1rem;
+}
+
+.bx--progress-bar--finished .bx--progress-bar__bar,
+.bx--progress-bar--finished .bx--progress-bar__status-icon {
+  color: #198038;
+}
+
+.bx--progress-bar--error .bx--progress-bar__bar,
+.bx--progress-bar--error .bx--progress-bar__status-icon,
+.bx--progress-bar--error .bx--progress-bar__helper-text {
+  color: #da1e28;
+}
+
+.bx--progress-bar--finished .bx--progress-bar__bar,
+.bx--progress-bar--error .bx--progress-bar__bar {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+
+.bx--progress-bar--finished.bx--progress-bar--inline
+.bx--progress-bar__track,
+.bx--progress-bar--error.bx--progress-bar--inline
+.bx--progress-bar__track {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  visibility: inherit;
+  white-space: nowrap;
+}
+
+.bx--progress-bar--finished.bx--progress-bar--inline
+.bx--progress-bar__label,
+.bx--progress-bar--error.bx--progress-bar--inline
+.bx--progress-bar__label {
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-right: 0;
 }
 
 @-webkit-keyframes progress-bar-indeterminate {
@@ -18279,10 +18415,16 @@ span.bx--pagination__text {
 }
 
 .bx--progress-bar--inline .bx--progress-bar__label {
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
   margin-right: 1rem;
   margin-bottom: 0;
+}
+
+.bx--progress-bar--inline .bx--progress-bar__track {
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .bx--progress-bar--inline .bx--progress-bar__helper-text {
@@ -20954,7 +21096,7 @@ span.bx--pagination__text {
 }
 
 /* stylelint-disable */
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--tooltip__trigger svg,
   .bx--tooltip__trigger:hover svg,
   .bx--tooltip__trigger:focus svg {
@@ -20962,20 +21104,20 @@ span.bx--pagination__text {
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--tooltip__trigger:focus svg {
     color: Highlight;
     outline: 1px solid Highlight;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--tooltip {
     outline: 1px solid transparent;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--assistive-text {
     outline: 1px solid transparent;
   }
@@ -21449,19 +21591,12 @@ span.bx--pagination__text {
           transform: scale(0.5);
 }
 
-@media screen and (-ms-high-contrast: active) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--radio-button:checked
 + .bx--radio-button__label
 .bx--radio-button__appearance::before {
-    background-color: WindowText;
-  }
-}
-
-@media screen and (prefers-contrast) {
-  .bx--radio-button:checked
-+ .bx--radio-button__label
-.bx--radio-button__appearance::before {
-    border: 2px solid WindowText;
+    fill: ButtonText;
+    background-color: ButtonText;
   }
 }
 
@@ -22199,7 +22334,7 @@ span.bx--pagination__text {
   fill: #525252;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--search-close svg,
   .bx--search-magnifier-icon {
     fill: ButtonText;
@@ -22446,6 +22581,8 @@ span.bx--pagination__text {
   width: 4rem;
   height: 2.5rem;
   -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+          appearance: textfield;
   text-align: center;
 }
 
@@ -22590,20 +22727,20 @@ span.bx--pagination__text {
 }
 
 /* stylelint-disable */
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--slider__thumb {
     outline: 1px solid transparent;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--slider__thumb:focus {
     color: Highlight;
     outline: 1px solid Highlight;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--slider__track {
     outline: 1px solid transparent;
   }
@@ -22829,7 +22966,7 @@ span.bx--pagination__text {
   display: none;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--structured-list-input:checked
 + .bx--structured-list-td
 .bx--structured-list-svg {
@@ -23864,7 +24001,7 @@ a.bx--tabs__nav-link:active {
   white-space: nowrap;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--tabs--scrollable__nav-item
 .bx--tabs__nav-item--selected
 .bx--tabs--scrollable__nav-item--selected {
@@ -23873,7 +24010,7 @@ a.bx--tabs__nav-link:active {
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--tabs--scrollable
 .bx--tabs--scrollable__nav-item--disabled
 .bx--tabs--scrollable__nav-link {
@@ -24250,20 +24387,20 @@ a.bx--tabs__nav-link:active {
 }
 
 /* stylelint-disable */
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--tag {
     outline: 1px solid transparent;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--tag__close-icon svg,
   .bx--tag__custom-icon svg {
     fill: ButtonText;
   }
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--tag__close-icon:focus {
     color: Highlight;
     outline: 1px solid Highlight;
@@ -25675,6 +25812,22 @@ svg {
 + .bx--toggle-input__label
 .bx--toggle__switch::before {
   border-radius: 0;
+}
+
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
+  .bx--toggle__switch::before {
+    outline: 1px solid transparent;
+  }
+}
+
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
+  .bx--toggle__switch::after,
+  .bx--toggle-input:checked
++ .bx--toggle-input__label
+> .bx--toggle__switch::after {
+    outline: 1px solid transparent;
+    background-color: ButtonText;
+  }
 }
 
 .bx--toolbar {
@@ -27398,7 +27551,7 @@ a.bx--header__menu-item:focus
   fill: #525252;
 }
 
-@media screen and (-ms-high-contrast: active), (forced-colors: active), (prefers-contrast) {
+@media screen and (-ms-high-contrast: active), (forced-colors: active) {
   .bx--side-nav__icon > svg,
   .bx--side-nav
 a.bx--header__menu-item:hover

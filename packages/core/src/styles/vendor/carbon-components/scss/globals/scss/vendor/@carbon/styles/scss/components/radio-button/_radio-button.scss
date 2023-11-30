@@ -15,6 +15,7 @@
 @use '../../utilities/focus-outline' as *;
 @use '../../utilities/component-reset' as *;
 @use '../../utilities/visually-hidden' as *;
+@use '../../utilities/high-contrast-mode' as *;
 @use '../../utilities/skeleton' as *;
 @use '../../utilities/convert' as *;
 @use '../../config' as *;
@@ -81,11 +82,11 @@ $radio-border-width: 1px !default;
   .#{$prefix}--radio-button__appearance {
     @include reset;
 
-    width: rem(18px);
-    height: rem(18px);
+    width: to-rem(18px);
+    height: to-rem(18px);
     flex-shrink: 0;
     border: $radio-border-width solid $icon-primary;
-    margin: rem(1px) $spacing-03 rem(2px) rem(2px);
+    margin: to-rem(1px) $spacing-03 to-rem(2px) to-rem(2px);
     background-color: transparent;
     border-radius: 50%;
   }
@@ -109,16 +110,7 @@ $radio-border-width: 1px !default;
       transform: scale(0.5);
 
       // Allow the selected button to be seen in Windows HCM for IE/Edge
-      @media screen and (-ms-high-contrast: active) {
-        // Utilize a system color variable to accommodate any user HCM theme
-        background-color: WindowText;
-      }
-
-      // Firefox only HCM solution
-      @media screen and (prefers-contrast) {
-        // Utilize a system color variable to accommodate any user HCM theme
-        border: 2px solid WindowText;
-      }
+      @include high-contrast-mode('icon-fill');
     }
   }
 
@@ -154,8 +146,8 @@ $radio-border-width: 1px !default;
   .#{$prefix}--radio-button__label.#{$prefix}--skeleton {
     @include skeleton;
 
-    width: rem(100px);
-    height: rem(18px);
+    width: to-rem(100px);
+    height: to-rem(18px);
   }
 
   .#{$prefix}--radio-button__label.#{$prefix}--skeleton

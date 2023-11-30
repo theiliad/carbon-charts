@@ -1906,7 +1906,7 @@ $expressive-heading-03: if(
     breakpoints: (
       xlg: (
         font-size: 1.25rem,
-        line-height: 1.25,
+        line-height: 1.4,
       ),
       max: (
         font-size: 1.5rem,
@@ -1932,9 +1932,11 @@ $expressive-heading-04: if(
       xlg: (
         font-size: 1.75rem,
         line-height: 1.25,
+        font-weight: 400,
       ),
       max: (
         font-size: 2rem,
+        font-weight: 400,
       ),
     ),
   )
@@ -1961,19 +1963,16 @@ $expressive-heading-05: if(
       ),
       lg: (
         font-size: 2.625rem,
-        font-weight: 300,
         line-height: 1.19,
         letter-spacing: 0,
       ),
       xlg: (
         font-size: 3rem,
-        font-weight: 300,
         line-height: 1.17,
         letter-spacing: 0,
       ),
       max: (
         font-size: 3.75rem,
-        font-weight: 300,
         letter-spacing: 0,
       ),
     ),
@@ -2195,21 +2194,21 @@ $display-03: if(
     letter-spacing: 0,
     breakpoints: (
       md: (
-        font-size: 4.25rem,
-        line-height: 1.15,
+        font-size: 3.375rem,
+        line-height: 1.18,
       ),
       lg: (
-        font-size: 5.75rem,
-        line-height: 1.11,
+        font-size: 3.75rem,
+        line-height: 1.16,
         letter-spacing: -0.64px,
       ),
       xlg: (
-        font-size: 7.625rem,
-        line-height: 1.07,
+        font-size: 4.75rem,
+        line-height: 1.13,
       ),
       max: (
-        font-size: 9.75rem,
-        line-height: 1.05,
+        font-size: 5.25rem,
+        line-height: 1.11,
         letter-spacing: -0.96px,
       ),
     ),
@@ -2225,23 +2224,22 @@ $display-04: if(
   map-get($carbon--theme, 'display-04'),
   (
     font-size: 2.625rem,
-    font-weight: 600,
+    font-weight: 300,
     line-height: 1.19,
     letter-spacing: 0,
     breakpoints: (
       md: (
         font-size: 4.25rem,
-        line-height: 1.15,
+        line-height: 1.14,
       ),
       lg: (
         font-size: 5.75rem,
-        line-height: 1.11,
+        line-height: 1.1,
         letter-spacing: -0.64px,
       ),
       xlg: (
         font-size: 7.625rem,
-        line-height: 1.07,
-        letter-spacing: -0.64px,
+        line-height: 1.06,
       ),
       max: (
         font-size: 9.75rem,
@@ -2462,7 +2460,7 @@ $fluid-heading-03: if(
     breakpoints: (
       xlg: (
         font-size: 1.25rem,
-        line-height: 1.25,
+        line-height: 1.4,
       ),
       max: (
         font-size: 1.5rem,
@@ -2488,9 +2486,11 @@ $fluid-heading-04: if(
       xlg: (
         font-size: 1.75rem,
         line-height: 1.25,
+        font-weight: 400,
       ),
       max: (
         font-size: 2rem,
+        font-weight: 400,
       ),
     ),
   )
@@ -2517,19 +2517,16 @@ $fluid-heading-05: if(
       ),
       lg: (
         font-size: 2.625rem,
-        font-weight: 300,
         line-height: 1.19,
         letter-spacing: 0,
       ),
       xlg: (
         font-size: 3rem,
-        font-weight: 300,
         line-height: 1.17,
         letter-spacing: 0,
       ),
       max: (
         font-size: 3.75rem,
-        font-weight: 300,
         letter-spacing: 0,
       ),
     ),
@@ -2751,21 +2748,21 @@ $fluid-display-03: if(
     letter-spacing: 0,
     breakpoints: (
       md: (
-        font-size: 4.25rem,
-        line-height: 1.15,
+        font-size: 3.375rem,
+        line-height: 1.18,
       ),
       lg: (
-        font-size: 5.75rem,
-        line-height: 1.11,
+        font-size: 3.75rem,
+        line-height: 1.16,
         letter-spacing: -0.64px,
       ),
       xlg: (
-        font-size: 7.625rem,
-        line-height: 1.07,
+        font-size: 4.75rem,
+        line-height: 1.13,
       ),
       max: (
-        font-size: 9.75rem,
-        line-height: 1.05,
+        font-size: 5.25rem,
+        line-height: 1.11,
         letter-spacing: -0.96px,
       ),
     ),
@@ -2781,23 +2778,22 @@ $fluid-display-04: if(
   map-get($carbon--theme, 'fluid-display-04'),
   (
     font-size: 2.625rem,
-    font-weight: 600,
+    font-weight: 300,
     line-height: 1.19,
     letter-spacing: 0,
     breakpoints: (
       md: (
         font-size: 4.25rem,
-        line-height: 1.15,
+        line-height: 1.14,
       ),
       lg: (
         font-size: 5.75rem,
-        line-height: 1.11,
+        line-height: 1.1,
         letter-spacing: -0.64px,
       ),
       xlg: (
         font-size: 7.625rem,
-        line-height: 1.07,
-        letter-spacing: -0.64px,
+        line-height: 1.06,
       ),
       max: (
         font-size: 9.75rem,
